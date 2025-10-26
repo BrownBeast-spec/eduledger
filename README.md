@@ -2,7 +2,7 @@
 
 A comprehensive blockchain-based digital certificate management system for universities, built on Hyperledger Fabric with consent-based sharing and privacy-preserving verification.
 
-## 🎯 Overview
+## Overview
 
 Edu-Ledger enables universities to:
 - **Issue** tamper-proof digital certificates on the blockchain
@@ -11,7 +11,7 @@ Edu-Ledger enables universities to:
 - **Verify** certificates with privacy-preserving selective disclosure
 - **Track** immutable audit trails of all certificate operations
 
-## 🏗️ Architecture
+## Architecture
 
 ### Components
 
@@ -27,7 +27,7 @@ Edu-Ledger enables universities to:
 - **Students (Org1MSP)**: Own certificates, grant/revoke consent
 - **Verifiers/Employers (Org2MSP)**: Request and verify certificates with consent
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Docker and Docker Compose
 - Go 1.21+
@@ -35,7 +35,7 @@ Edu-Ledger enables universities to:
 - Hyperledger Fabric binaries (v2.5+)
 - Hyperledger Fabric samples repository
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install Dependencies
 
@@ -91,7 +91,7 @@ See [TESTING.md](./TESTING.md) for comprehensive testing guide including:
 - Verifying certificates
 - Privacy-preserving data sharing
 
-## 🔐 Key Features
+## Key Features
 
 ### 1. Certificate Issuance
 - Universities issue certificates with cryptographic signatures
@@ -114,7 +114,7 @@ See [TESTING.md](./TESTING.md) for comprehensive testing guide including:
 - Immediate propagation across network
 - Historical records preserved
 
-## 📊 Data Models
+## Data Models
 
 ### Certificate
 ```json
@@ -151,7 +151,7 @@ See [TESTING.md](./TESTING.md) for comprehensive testing guide including:
 }
 ```
 
-## 🔧 Chaincode Functions
+## Chaincode Functions
 
 ### CertificateManager
 
@@ -173,7 +173,7 @@ See [TESTING.md](./TESTING.md) for comprehensive testing guide including:
 | `QueryConsentsByStudent` | Get student's consents | holder DID |
 | `AccessCertificateWithConsent` | Get filtered certificate data | consentID, verifier DID |
 
-## 🧪 Testing
+## Testing
 
 Run the comprehensive test suite:
 
@@ -192,7 +192,7 @@ peer chaincode invoke -o localhost:7050 \
   -c '{"function":"CertificateManager:IssueCertificate","Args":["CERT-001","hash123","QmIPFS123","did:web:university.edu","did:web:student:STU001","STU001","{\"degreeName\":\"BSc Computer Science\",\"major\":\"CS\",\"graduationDate\":\"2024-05-20\",\"gpa\":\"3.8\"}"]}'
 ```
 
-## 🛠️ Network Management
+## Network Management
 
 ```bash
 # Start network
@@ -208,7 +208,7 @@ peer chaincode invoke -o localhost:7050 \
 ./network.sh down
 ```
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 edu-ledger/
@@ -229,7 +229,7 @@ edu-ledger/
 └── TESTING.md                 # Comprehensive testing guide
 ```
 
-## 🔒 Security Features
+## Security Features
 
 - **TLS-enabled** communication between all components
 - **MSP-based** identity management
@@ -238,7 +238,7 @@ edu-ledger/
 - **Consent-based** data sharing
 - **Audit trails** for all operations
 
-## 🚧 Future Enhancements
+## Future Enhancements
 
 - [ ] Post-Quantum Cryptography (Kyber + Dilithium)
 - [ ] IPFS integration for certificate PDFs
@@ -248,19 +248,19 @@ edu-ledger/
 - [ ] Advanced analytics dashboard
 - [ ] Multi-university federation
 
-## 📄 License
+## License
 
 SPDX-License-Identifier: Apache-2.0
 
-## 🤝 Contributing
+## Contributing
 
 Contributions welcome! Please see contribution guidelines.
 
-## 📞 Support
+## Support
 
 For issues and questions, please open an issue in the repository.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 Built with:
 - Hyperledger Fabric
