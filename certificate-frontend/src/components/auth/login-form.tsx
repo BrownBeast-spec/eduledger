@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/hooks/useAuth'
 import { Shield, GraduationCap, User, Eye, EyeOff } from 'lucide-react'
+import BackgroundImage from '@/assets/back2.png'
 
 export function LoginForm() {
   const [username, setUsername] = useState('')
@@ -58,23 +59,37 @@ export function LoginForm() {
   ]
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div 
+      className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${BackgroundImage.src})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* Overlay gradient - darker and more subtle */}
+      <div className="absolute inset-0 bg-black/40" />
+      
+      <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
         {/* Login Form */}
-        <Card className="w-full max-w-md mx-auto">
+        <Card className="w-full max-w-md mx-auto backdrop-blur-lg bg-white/10 border border-white/30 shadow-2xl">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">
-              <Shield className="h-12 w-12 text-primary" />
+              <div className="p-3 bg-white/20 backdrop-blur-lg rounded-xl">
+                <Shield className="h-12 w-12 text-white" />
+              </div>
             </div>
-            <CardTitle className="text-2xl font-bold">Welcome to EduLedger</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-3xl font-bold text-white">
+              Welcome to EduLedger
+            </CardTitle>
+            <CardDescription className="text-white/80">
               Sign in to access the blockchain certificate management system
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username" className="text-white">Username</Label>
                 <Input
                   id="username"
                   type="text"
@@ -82,11 +97,12 @@ export function LoginForm() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
+                  className="bg-white/10 border-white/30 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-white/20"
                 />
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-white">Password</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -95,6 +111,7 @@ export function LoginForm() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
+                    className="bg-white/10 border-white/30 text-white placeholder:text-white/50 focus:border-white/50 focus:ring-white/20"
                   />
                   <Button
                     type="button"
@@ -113,14 +130,14 @@ export function LoginForm() {
               </div>
 
               {error && (
-                <div className="text-destructive text-sm text-center bg-destructive/10 p-3 rounded-md">
+                <div className="text-red-300 text-sm text-center bg-red-500/10 p-3 rounded-md border border-red-400/20">
                   {error}
                 </div>
               )}
 
               <Button
                 type="submit"
-                className="w-full"
+                className="w-full bg-white/20 hover:bg-white/30 text-white shadow-lg transition-all duration-300 backdrop-blur-lg border border-white/30"
                 disabled={loading}
               >
                 {loading ? 'Signing in...' : 'Sign In'}
@@ -131,9 +148,9 @@ export function LoginForm() {
 
         {/* Demo Credentials */}
         <div className="space-y-6">
-          <div>
-            <h2 className="text-2xl font-bold text-foreground mb-2">Demo Credentials</h2>
-            <p className="text-muted-foreground">
+          <div className="backdrop-blur-lg bg-white/10 p-6 rounded-lg border border-white/30 shadow-xl">
+            <h2 className="text-2xl font-bold text-white mb-2">Demo Credentials</h2>
+            <p className="text-white/80">
               Use these credentials to explore different user roles and features
             </p>
           </div>
@@ -142,25 +159,25 @@ export function LoginForm() {
             {demoCredentials.map((cred, index) => {
               const Icon = cred.icon
               return (
-                <Card key={index} className="cursor-pointer hover:shadow-md transition-shadow">
+                <Card key={index} className="cursor-pointer hover:shadow-xl transition-all duration-300 backdrop-blur-lg bg-white/10 border border-white/30 hover:bg-white/20">
                   <CardContent className="p-4">
                     <div className="flex items-start space-x-4">
                       <div className="flex-shrink-0">
-                        <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center">
-                          <Icon className="h-5 w-5 text-primary" />
+                        <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                          <Icon className="h-5 w-5 text-white" />
                         </div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-foreground">{cred.role}</h3>
-                        <p className="text-sm text-muted-foreground mb-2">{cred.description}</p>
+                        <h3 className="font-semibold text-white">{cred.role}</h3>
+                        <p className="text-sm text-white/80 mb-2">{cred.description}</p>
                         <div className="space-y-1">
                           <div className="flex items-center space-x-2">
-                            <span className="text-xs font-medium text-muted-foreground w-16">Username:</span>
-                            <code className="text-xs bg-muted px-2 py-1 rounded">{cred.username}</code>
+                            <span className="text-xs font-medium text-white/90 w-16">Username:</span>
+                            <code className="text-xs bg-white/10 text-white px-2 py-1 rounded">{cred.username}</code>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <span className="text-xs font-medium text-muted-foreground w-16">Password:</span>
-                            <code className="text-xs bg-muted px-2 py-1 rounded">{cred.password}</code>
+                            <span className="text-xs font-medium text-white/90 w-16">Password:</span>
+                            <code className="text-xs bg-white/10 text-white px-2 py-1 rounded">{cred.password}</code>
                           </div>
                         </div>
                       </div>
